@@ -57,8 +57,9 @@ Main
 """
 
 # int_list size
-sample_size = 30000000
-#sample_size = 150000000  # BIG DATA - some algorithms may crash your computer
+sample_size = 30000000  # 30 millions
+#sample_size = 500000000  # for BIG DATA testing, 500 millions. Some algorithms may (will) crash your computer
+
 try:
     sample_size = int(sys.argv[1])  # or pass one by command-line argument
 except IndexError:
