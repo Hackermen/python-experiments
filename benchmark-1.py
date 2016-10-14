@@ -30,7 +30,9 @@ def benchmark(function, big_list, expected_output):
         start = time.time()
         if function(big_list) == expected_output:
                 elapsed = time.time() - start
-                print("{:<20} {:.2f}".format(function.__name__, elapsed))
+                print("{:<12} {:.3f}".format(function.__name__, elapsed))
+        else:
+            print("{:<12} returned wrong output".format(function.__name__))
 
 
 """
@@ -49,6 +51,13 @@ def luiz_1(int_list):
 def andrei_1(int_list):
     odds = [x for x in int_list if x % 2]
     evens = set(odds) ^ set(int_list)
+    if len(evens) > len(odds): return odds.pop()
+    return evens.pop()
+
+
+def rodrigo_1(int_list):
+    odds = list(filter(lambda x: x % 2, int_list))
+    evens = set(int_list) - set(odds)
     if len(evens) > len(odds): return odds.pop()
     return evens.pop()
 
@@ -77,3 +86,4 @@ Run algorithms
 
 benchmark(luiz_1, random_odds, EVEN)
 benchmark(andrei_1, random_odds, EVEN)
+benchmark(rodrigo_1, random_odds, EVEN)
