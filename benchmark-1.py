@@ -31,12 +31,12 @@ Return: 160
 def benchmark(function, int_list, expected_output):
         # simple unit testing
         tests = []
-        tests.append(function([1, 0, 0, 0]) == 1)  # odd: first
-        tests.append(function([0, 1, 0, 0]) == 1)  # odd: second/middle
-        tests.append(function([0, 0, 0, 1]) == 1)  # odd: last
         tests.append(function([0, 1, 1, 1]) == 0)  # even: first
         tests.append(function([1, 0, 1, 1]) == 0)  # even: second/middle
         tests.append(function([1, 1, 1, 0]) == 0)  # even: last
+        tests.append(function([1, 0, 0, 0]) == 1)  # odd:  first
+        tests.append(function([0, 1, 0, 0]) == 1)  # odd:  second/middle
+        tests.append(function([0, 0, 0, 1]) == 1)  # odd:  last
         if False in tests:
             print('{:<12} failed tests'.format(function.__name__))
             return
@@ -63,14 +63,14 @@ def luiz_1(int_list):
 def andrei_1(int_list):
     odds = [x for x in int_list if x % 2]
     evens = set(odds) ^ set(int_list)
-    if len(evens) > len(odds): return odds.pop()
+    if len(evens) >= len(odds): return odds.pop()
     return evens.pop()
 
 
 def rodrigo_1(int_list):
     odds = list(filter(lambda x: x % 2, int_list))
     evens = set(int_list) - set(odds)
-    if len(evens) > len(odds): return odds.pop()
+    if len(evens) >= len(odds): return odds.pop()
     return evens.pop()
 
 
