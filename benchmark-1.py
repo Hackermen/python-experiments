@@ -2,7 +2,7 @@
 
 import sys
 import time
-# you can import others, for this case-study use only standard library
+# for this case-study use only standard library
 
 """
 CRITERIA:
@@ -51,7 +51,7 @@ def benchmark(function, int_list, expected_output):
 Algorithms
 """
 
-def luiz_1(int_list):
+def algo_1(int_list):
     if int_list[0] % 2 == int_list[1] % 2:
         return next((x for x in int_list[2:] if x % 2 != int_list[0] % 2), None)
     elif int_list[0] % 2 == int_list[2] % 2:
@@ -60,26 +60,26 @@ def luiz_1(int_list):
         return int_list[0]
 
 
-def andrei_1(int_list):
+def algo_2(int_list):
     odds = [x for x in int_list if x % 2]
     evens = set(odds) ^ set(int_list)
     if len(evens) >= len(odds): return odds.pop()
     return evens.pop()
 
 
-def rodrigo_1(int_list):
+def algo_3(int_list):
     odds = list(filter(lambda x: x % 2, int_list))
     evens = set(int_list) - set(odds)
     if len(evens) >= len(odds): return odds.pop()
     return evens.pop()
 
 
-def luiz_2(int_list):
+def algo_4(int_list):
     parity = [n % 2 for n in int_list]
     return int_list[parity.index(1)] if sum(parity) == 1 else int_list[parity.index(0)]
 
 
-def andrei_2(int_list):
+def algo_5(int_list):
     checks = []
     checks.append(int_list[0] % 2 == 0)
     checks.append(int_list[1] % 2 == 0)
@@ -114,8 +114,8 @@ random_odds[int(sample_size / 2 / 2)] = EVEN  # outsider
 Run algorithms
 """
 
-benchmark(luiz_1, random_odds, EVEN)
-benchmark(andrei_1, random_odds, EVEN)
-benchmark(rodrigo_1, random_odds, EVEN)
-benchmark(luiz_2, random_odds, EVEN)
-benchmark(andrei_2, random_odds, EVEN)
+benchmark(algo_1, random_odds, EVEN)
+benchmark(algo_2, random_odds, EVEN)
+benchmark(algo_3, random_odds, EVEN)
+benchmark(algo_4, random_odds, EVEN)
+benchmark(algo_5, random_odds, EVEN)
